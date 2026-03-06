@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPMN Corrigé — Cycle de Développement</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Syne:wght@400;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: #0a0e14;
+    font-family: 'Syne', sans-serif;
+    color: #cdd6f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 16px 48px;
+  }
+  h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: #89b4fa;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .sub { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:#585b70; margin-bottom:32px; }
+  .scroll-wrap { overflow-x:auto; width:100%; }
+  .diagram-box {
+    background: #11151e;
+    border: 1px solid #1e2030;
+    border-radius: 14px;
+    padding: 28px 20px;
+    display: inline-block;
+    min-width: 1200px;
+    box-shadow: 0 0 80px rgba(137,180,250,0.04);
+  }
+  .legend {
+    display:flex; gap:24px; flex-wrap:wrap; justify-content:center;
+    margin-top:24px;
+  }
+  .li { display:flex; align-items:center; gap:7px; font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:#585b70; }
+</style>
+</head>
+<body>
+
+<h1>Diagramme BPMN 2.0 — Corrigé</h1>
+<p class="sub">Flux principal continu · Passerelle XOR intégrée · Sub-Processes conformes</p>
+
+<div class="scroll-wrap">
+<div class="diagram-box">
+<svg width="1200" height="820" viewBox="0 0 1200 820" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arr" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+    <polygon points="0 0,9 3.5,0 7" fill="#89b4fa"/>
+  </marker>
+  <marker id="arr-g" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+    <polygon points="0 0,9 3.5,0 7" fill="#a6e3a1"/>
+  </marker>
+  <marker id="arr-r" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+    <polygon points="0 0,9 3.5,0 7" fill="#f38ba8"/>
+  </marker>
+  <marker id="arr-o" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+    <polygon points="0 0,9 3.5,0 7" fill="#fab387"/>
+  </marker>
+  <marker id="arr-p" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+    <polygon points="0 0,9 3.5,0 7" fill="#cba6f7"/>
+  </marker>
+  <filter id="fg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="fb"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="fr"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+
+<!-- ══════════════════════════ POOL ══════════════════════════ -->
+<rect x="10" y="10" width="1180" height="800" rx="12" fill="none" stroke="#1e2030" stroke-width="1.5"/>
+<rect x="10" y="10" width="32" height="800" rx="12" fill="#13172a" stroke="#1e2030" stroke-width="1"/>
+<text transform="translate(26,410) rotate(-90)" text-anchor="middle"
+      font-family="JetBrains Mono,monospace" font-size="10" fill="#585b70" letter-spacing="2.5">
+  PROCESSUS — CYCLE DE DÉVELOPPEMENT LOGICIEL
+</text>
+
+<!-- ══════════════════════════
+     FLUX PRINCIPAL (ligne Y=300)
+     X: Start=95 | P1=175 | P2=335 | P3=495 | P4=655 | P5=815 | XOR=990 | P6=1060 | End=1150
+══════════════════════════ -->
+
+<!-- ─── START EVENT cx=95 cy=300 ─── -->
+<circle cx="95" cy="300" r="26" fill="#0a0e14" stroke="#a6e3a1" stroke-width="3" filter="url(#fg)"/>
+<circle cx="95" cy="300" r="18" fill="none" stroke="#a6e3a1" stroke-width="1" opacity="0.35"/>
+<polygon points="88,289 88,311 110,300" fill="#a6e3a1"/>
+<text x="95" y="344" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" fill="#a6e3a1" font-weight="600">Début du projet</text>
+
+<!-- seq → P1 -->
+<line x1="122" y1="300" x2="168" y2="300" stroke="#89b4fa" stroke-width="1.8" marker-end="url(#arr)"/>
+
+<!-- ─── PHASE 1 : Analyse des besoins x=170 y=255 w=140 h=90 ─── -->
+<rect x="170" y="255" width="140" height="90" rx="7" fill="#13172a" stroke="#89b4fa" stroke-width="1.8" filter="url(#fb)"/>
+<rect x="177" y="261" width="13" height="11" rx="2" fill="none" stroke="#89b4fa" stroke-width="1.1"/>
+<line x1="181" y1="265" x2="187" y2="265" stroke="#89b4fa" stroke-width="0.9"/>
+<line x1="181" y1="268" x2="187" y2="268" stroke="#89b4fa" stroke-width="0.9"/>
+<rect x="170" y="243" width="52" height="13" rx="3" fill="#89b4fa18" stroke="#89b4fa" stroke-width="0.7"/>
+<text x="196" y="253" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#89b4fa">Phase 1</text>
+<text x="240" y="284" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" fill="#cdd6f4" font-weight="600">Analyse des</text>
+<text x="240" y="297" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" fill="#cdd6f4" font-weight="600">besoins</text>
+<text x="240" y="312" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">Cahier des charges</text>
+<text x="240" y="323" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">validé</text>
+
+<!-- Data object: Cahier des charges -->
+<rect x="195" y="370" width="70" height="42" rx="3" fill="#13172a" stroke="#89b4fa" stroke-width="1" stroke-dasharray="3,2"/>
+<polygon points="249,370 265,370 265,386 249,386" fill="#13172a" stroke="#89b4fa" stroke-width="1"/>
+<line x1="249" y1="370" x2="249" y2="386" stroke="#89b4fa" stroke-width="1"/>
+<line x1="249" y1="386" x2="265" y2="386" stroke="#89b4fa" stroke-width="1"/>
+<text x="230" y="388" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#89b4fa">📄 Cahier des</text>
+<text x="230" y="400" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#89b4fa">charges</text>
+<!-- data association (dashed) -->
+<line x1="240" y1="345" x2="240" y2="370" stroke="#89b4fa" stroke-width="1" stroke-dasharray="3,2"/>
+
+<!-- seq → P2 -->
+<line x1="310" y1="300" x2="328" y2="300" stroke="#89b4fa" stroke-width="1.8" marker-end="url(#arr)"/>
+
+<!-- ─── PHASE 2 : Analyse du système x=330 y=255 ─── -->
+<rect x="330" y="255" width="140" height="90" rx="7" fill="#13172a" stroke="#89b4fa" stroke-width="1.8" filter="url(#fb)"/>
+<rect x="337" y="261" width="13" height="11" rx="2" fill="none" stroke="#89b4fa" stroke-width="1.1"/>
+<line x1="341" y1="265" x2="347" y2="265" stroke="#89b4fa" stroke-width="0.9"/>
+<line x1="341" y1="268" x2="347" y2="268" stroke="#89b4fa" stroke-width="0.9"/>
+<rect x="330" y="243" width="52" height="13" rx="3" fill="#89b4fa18" stroke="#89b4fa" stroke-width="0.7"/>
+<text x="356" y="253" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#89b4fa">Phase 2</text>
+<text x="400" y="284" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" fill="#cdd6f4" font-weight="600">Analyse du</text>
+<text x="400" y="297" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" fill="#cdd6f4" font-weight="600">système</text>
+<text x="400" y="312" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">Faisabilité ·</text>
+<text x="400" y="323" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">Architecture globale</text>
+
+<!-- seq → P3 -->
+<line x1="470" y1="300" x2="488" y2="300" stroke="#89b4fa" stroke-width="1.8" marker-end="url(#arr)"/>
+
+<!-- ─── PHASE 3 : Conception x=490 y=255 ─── -->
+<rect x="490" y="255" width="140" height="90" rx="7" fill="#13172a" stroke="#89b4fa" stroke-width="1.8" filter="url(#fb)"/>
+<rect x="497" y="261" width="13" height="11" rx="2" fill="none" stroke="#89b4fa" stroke-width="1.1"/>
+<line x1="501" y1="265" x2="507" y2="265" stroke="#89b4fa" stroke-width="0.9"/>
+<line x1="501" y1="268" x2="507" y2="268" stroke="#89b4fa" stroke-width="0.9"/>
+<rect x="490" y="243" width="52" height="13" rx="3" fill="#89b4fa18" stroke="#89b4fa" stroke-width="0.7"/>
+<text x="516" y="253" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#89b4fa">Phase 3</text>
+<text x="560" y="284" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" fill="#cdd6f4" font-weight="600">Conception</text>
+<text x="560" y="299" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">UML · Base de données</text>
+<text x="560" y="311" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">Architecture détaillée</text>
+<text x="560" y="323" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">Modèles de données</text>
+
+<!-- seq → P4 SUB -->
+<line x1="630" y1="300" x2="648" y2="300" stroke="#89b4fa" stroke-width="1.8" marker-end="url(#arr)"/>
+
+<!-- ─── PHASE 4 : SUB-PROCESS Implémentation & Tests unitaires ─── -->
+<!-- Sub-process outer box x=650 y=210 w=170 h=180 -->
+<rect x="650" y="210" width="170" height="180" rx="10" fill="#13172a" stroke="#fab387" stroke-width="2" stroke-dasharray="7,3"/>
+<rect x="650" y="198" width="58" height="13" rx="3" fill="#fab38718" stroke="#fab387" stroke-width="0.7"/>
+<text x="679" y="208" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#fab387">Phase 4</text>
+<text x="735" y="228" text-anchor="middle" font-family="Syne,sans-serif" font-size="9.5" fill="#fab387" font-weight="600">Implémentation &amp; Tests</text>
+
+<!-- Internal Start -->
+<circle cx="670" cy="255" r="10" fill="#0a0e14" stroke="#fab387" stroke-width="1.5"/>
+<polygon points="666,250 666,260 676,255" fill="#fab387" opacity="0.7"/>
+
+<!-- internal seq -->
+<line x1="680" y1="255" x2="695" y2="255" stroke="#fab387" stroke-width="1.3" marker-end="url(#arr-o)"/>
+
+<!-- Internal task: Implémentation -->
+<rect x="697" y="232" width="88" height="46" rx="5" fill="#1e2030" stroke="#fab387" stroke-width="1.3"/>
+<text x="741" y="251" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" fill="#cdd6f4" font-weight="600">Implémentation</text>
+<text x="741" y="264" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#6c7086">Code source</text>
+<text x="741" y="274" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#6c7086">modules</text>
+
+<!-- internal seq down -->
+<line x1="741" y1="278" x2="741" y2="300" stroke="#fab387" stroke-width="1.3" marker-end="url(#arr-o)"/>
+
+<!-- Internal task: Tests unitaires -->
+<rect x="697" y="302" width="88" height="46" rx="5" fill="#1e2030" stroke="#fab387" stroke-width="1.3"/>
+<text x="741" y="321" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" fill="#cdd6f4" font-weight="600">Tests unitaires</text>
+<text x="741" y="334" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#6c7086">Validation locale</text>
+<text x="741" y="344" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#6c7086">par module</text>
+
+<!-- internal seq to end -->
+<line x1="785" y1="325" x2="800" y2="325" stroke="#fab387" stroke-width="1.3"/>
+<line x1="800" y1="325" x2="800" y2="300" stroke="#fab387" stroke-width="1.3" marker-end="url(#arr-o)"/>
+
+<!-- Internal End -->
+<circle cx="810" cy="290" r="10" fill="#0a0e14" stroke="#fab387" stroke-width="2"/>
+<circle cx="810" cy="290" r="6" fill="#fab387"/>
+
+<!-- Sub-process marker (+ icon) bottom center -->
+<rect x="726" y="378" width="18" height="14" rx="2" fill="#11151e" stroke="#fab387" stroke-width="1.3"/>
+<line x1="735" y1="382" x2="735" y2="390" stroke="#fab387" stroke-width="1.3"/>
+<line x1="731" y1="386" x2="739" y2="386" stroke="#fab387" stroke-width="1.3"/>
+
+<!-- seq P4 → P5 -->
+<line x1="820" y1="300" x2="838" y2="300" stroke="#89b4fa" stroke-width="1.8" marker-end="url(#arr)"/>
+
+<!-- ─── PHASE 5 : SUB-PROCESS Validation & Tests intégration ─── -->
+<rect x="840" y="210" width="170" height="180" rx="10" fill="#13172a" stroke="#cba6f7" stroke-width="2" stroke-dasharray="7,3"/>
+<rect x="840" y="198" width="58" height="13" rx="3" fill="#cba6f718" stroke="#cba6f7" stroke-width="0.7"/>
+<text x="869" y="208" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#cba6f7">Phase 5</text>
+<text x="925" y="228" text-anchor="middle" font-family="Syne,sans-serif" font-size="9.5" fill="#cba6f7" font-weight="600">Validation &amp; Tests intégration</text>
+
+<!-- Internal Start -->
+<circle cx="860" cy="255" r="10" fill="#0a0e14" stroke="#cba6f7" stroke-width="1.5"/>
+<polygon points="856,250 856,260 866,255" fill="#cba6f7" opacity="0.7"/>
+
+<!-- internal seq -->
+<line x1="870" y1="255" x2="885" y2="255" stroke="#cba6f7" stroke-width="1.3" marker-end="url(#arr-p)"/>
+
+<!-- Internal task: Tests intégration -->
+<rect x="887" y="232" width="88" height="46" rx="5" fill="#1e2030" stroke="#cba6f7" stroke-width="1.3"/>
+<text x="931" y="249" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" fill="#cdd6f4" font-weight="600">Tests d'intégration</text>
+<text x="931" y="263" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#6c7086">Validation système</text>
+<text x="931" y="273" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#6c7086">bout en bout</text>
+
+<!-- internal seq down -->
+<line x1="931" y1="278" x2="931" y2="300" stroke="#cba6f7" stroke-width="1.3" marker-end="url(#arr-p)"/>
+
+<!-- Internal task: Validation client -->
+<rect x="887" y="302" width="88" height="46" rx="5" fill="#1e2030" stroke="#cba6f7" stroke-width="1.3"/>
+<text x="931" y="319" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" fill="#cdd6f4" font-weight="600">Validation client</text>
+<text x="931" y="332" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#6c7086">Recette · Acceptation</text>
+<text x="931" y="342" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#6c7086">UAT</text>
+
+<!-- internal seq to end -->
+<line x1="975" y1="325" x2="990" y2="325" stroke="#cba6f7" stroke-width="1.3"/>
+<line x1="990" y1="325" x2="990" y2="300" stroke="#cba6f7" stroke-width="1.3" marker-end="url(#arr-p)"/>
+
+<!-- Internal End -->
+<circle cx="1000" cy="290" r="10" fill="#0a0e14" stroke="#cba6f7" stroke-width="2"/>
+<circle cx="1000" cy="290" r="6" fill="#cba6f7"/>
+
+<!-- Sub-process marker -->
+<rect x="916" y="378" width="18" height="14" rx="2" fill="#11151e" stroke="#cba6f7" stroke-width="1.3"/>
+<line x1="925" y1="382" x2="925" y2="390" stroke="#cba6f7" stroke-width="1.3"/>
+<line x1="921" y1="386" x2="929" y2="386" stroke="#cba6f7" stroke-width="1.3"/>
+
+<!-- ════════════════════════════════
+     seq P5 → XOR GATEWAY (on main flow Y=300)
+════════════════════════════════ -->
+<line x1="1010" y1="300" x2="1042" y2="300" stroke="#89b4fa" stroke-width="1.8" marker-end="url(#arr)"/>
+
+<!-- ─── XOR GATEWAY diamond cx=1060 cy=300 ─── -->
+<polygon points="1060,272 1090,300 1060,328 1030,300"
+         fill="#1e2030" stroke="#f9e2af" stroke-width="2.5"/>
+<line x1="1042" y1="282" x2="1078" y2="318" stroke="#f9e2af" stroke-width="2"/>
+<line x1="1078" y1="282" x2="1042" y2="318" stroke="#f9e2af" stroke-width="2"/>
+<text x="1060" y="356" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#f9e2af">Validé ?</text>
+
+<!-- XOR → YES → Phase 6 (right) -->
+<line x1="1090" y1="300" x2="1108" y2="300" stroke="#a6e3a1" stroke-width="2" marker-end="url(#arr-g)"/>
+<text x="1099" y="293" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#a6e3a1">✔ Oui</text>
+
+<!-- XOR → NO → loop back to Phase 4 (below) -->
+<!-- Down from XOR -->
+<line x1="1060" y1="328" x2="1060" y2="500" stroke="#f38ba8" stroke-width="1.8" stroke-dasharray="6,3"/>
+<!-- Left across bottom -->
+<line x1="1060" y1="500" x2="735" y2="500" stroke="#f38ba8" stroke-width="1.8" stroke-dasharray="6,3"/>
+<!-- Up to Phase 4 bottom -->
+<line x1="735" y1="500" x2="735" y2="395" stroke="#f38ba8" stroke-width="1.8" stroke-dasharray="6,3" marker-end="url(#arr-r)"/>
+<text x="897" y="520" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#f38ba8">✘ Non validé → Retour à l'Implémentation</text>
+
+<!-- ─── PHASE 6 : Exploitation & Maintenance x=1110 y=255 ─── -->
+<rect x="1110" y="255" width="65" height="90" rx="7" fill="#13172a" stroke="#89b4fa" stroke-width="1.8"/>
+<rect x="1110" y="243" width="52" height="13" rx="3" fill="#89b4fa18" stroke="#89b4fa" stroke-width="0.7"/>
+<text x="1136" y="253" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#89b4fa">Phase 6</text>
+<text x="1143" y="277" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" fill="#cdd6f4" font-weight="600">Exploitation</text>
+<text x="1143" y="289" text-anchor="middle" font-family="Syne,sans-serif" font-size="9" fill="#cdd6f4" font-weight="600">&amp; Maintenance</text>
+<text x="1143" y="304" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.8" fill="#6c7086">Mise en prod</text>
+<text x="1143" y="314" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.8" fill="#6c7086">Bugs · Évolutions</text>
+<text x="1143" y="324" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.8" fill="#6c7086">Support continu</text>
+
+<!-- seq Phase 6 → End -->
+<line x1="1143" y1="345" x2="1143" y2="386" stroke="#89b4fa" stroke-width="1.8" marker-end="url(#arr)"/>
+
+<!-- ─── END EVENT cx=1143 cy=410 ─── -->
+<circle cx="1143" cy="413" r="24" fill="#0a0e14" stroke="#f38ba8" stroke-width="4" filter="url(#fr)"/>
+<rect cx="1143" cy="413" x="1133" y="403" width="20" height="20" rx="3" fill="#f38ba8"/>
+<text x="1143" y="453" text-anchor="middle" font-family="Syne,sans-serif" font-size="10" fill="#f38ba8" font-weight="600">Fin du cycle</text>
+
+<!-- ══════════════════════════
+     ANNOTATIONS / CORRECTIONS
+══════════════════════════ -->
+<!-- Correction note top right -->
+<rect x="60" y="560" width="400" height="90" rx="8" fill="#13172a" stroke="#1e2030" stroke-width="1"/>
+<text x="80" y="581" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#f9e2af">⚑ Corrections appliquées (BPMN 2.0)</text>
+<text x="80" y="597" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">✔ Passerelle XOR intégrée dans le flux principal</text>
+<text x="80" y="611" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">✔ Sub-Processes avec Start/End events internes</text>
+<text x="80" y="625" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">✔ Data Object "Cahier des charges" ajouté (Phase 1)</text>
+<text x="80" y="639" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#6c7086">✔ Flux retour (non validé) clairement identifié</text>
+
+<!-- Title bar -->
+<text x="600" y="50" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10.5" fill="#1e2030" letter-spacing="4">
+  ─────────────────────────────────────────────────────────────────────────────
+</text>
+<text x="600" y="40" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#89b4fa" letter-spacing="3">
+  BPMN 2.0 — MODÈLE CORRIGÉ ET CONFORME
+</text>
+
+<!-- Flow labels -->
+<text x="155" y="293" font-family="JetBrains Mono,monospace" font-size="7" fill="#313244">seq</text>
+<text x="315" y="293" font-family="JetBrains Mono,monospace" font-size="7" fill="#313244">seq</text>
+<text x="475" y="293" font-family="JetBrains Mono,monospace" font-size="7" fill="#313244">seq</text>
+<text x="636" y="293" font-family="JetBrains Mono,monospace" font-size="7" fill="#313244">seq</text>
+<text x="826" y="293" font-family="JetBrains Mono,monospace" font-size="7" fill="#313244">seq</text>
+<text x="1025" y="293" font-family="JetBrains Mono,monospace" font-size="7" fill="#313244">seq</text>
+
+</svg>
+</div>
+</div>
+
+<div class="legend">
+  <div class="li"><svg width="18" height="14"><circle cx="9" cy="7" r="6" fill="none" stroke="#a6e3a1" stroke-width="2"/></svg> Start Event</div>
+  <div class="li"><svg width="18" height="14"><circle cx="9" cy="7" r="6" fill="#f38ba8" stroke="#f38ba8" stroke-width="2.5"/></svg> End Event</div>
+  <div class="li"><svg width="18" height="12"><rect x="1" y="1" width="16" height="10" rx="2" fill="none" stroke="#89b4fa" stroke-width="1.5"/></svg> Task</div>
+  <div class="li"><svg width="18" height="12"><rect x="1" y="1" width="16" height="10" rx="2" fill="none" stroke="#fab387" stroke-width="1.5" stroke-dasharray="3,2"/></svg> Sub-Process</div>
+  <div class="li"><svg width="14" height="14"><polygon points="7,0 14,7 7,14 0,7" fill="none" stroke="#f9e2af" stroke-width="2"/><line x1="3" y1="3" x2="11" y2="11" stroke="#f9e2af" stroke-width="1.5"/><line x1="11" y1="3" x2="3" y2="11" stroke="#f9e2af" stroke-width="1.5"/></svg> XOR Gateway</div>
+  <div class="li"><svg width="22" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="#89b4fa" stroke-width="1.8"/></svg> Flux séquentiel</div>
+  <div class="li"><svg width="22" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="#f38ba8" stroke-width="1.5" stroke-dasharray="4,2"/></svg> Retour (non validé)</div>
+  <div class="li"><svg width="22" height="8"><line x1="0" y1="4" x2="22" y2="4" stroke="#89b4fa" stroke-width="1" stroke-dasharray="3,2"/></svg> Association de données</div>
+</div>
+
+</body>
+</html>
